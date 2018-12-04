@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api.apps.ApiConfig',
+    'stats.apps.StatsConfig',
+    'scraper.apps.ScraperConfig',
 ]
 
 MIDDLEWARE = [
