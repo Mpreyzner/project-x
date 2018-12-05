@@ -1,0 +1,20 @@
+[
+  {
+    "model": "stats.totalstats",
+    "pk": 1,
+    "fields": {
+      "added": "2018-12-05T20:20:06.241Z",
+      "word_counts": "{ \"TEONITE\": 500, \"jest\": 444, \"super\": 333, \"tra\": 234, \"la\": 456, \"lala\": 678, \"heja\": 123, \"ho\": 4564, \"pa\": 55, \"papa\": 345}",
+      "top_10_words": "{ \"TEONITE\": 500, \"jest\": 444, \"super\": 333, \"tra\": 234, \"la\": 456, \"lala\": 678, \"heja\": 123, \"ho\": 4564, \"pa\": 55, \"papa\": 345}"
+    }
+  },
+  {
+    "model": "stats.authorstats",
+    "pk": 1,
+    "fields": {
+      "author": 1,
+      "word_counts": "{ \"TEONITE\": 500, \"jest\": 444, \"super\": 333, \"tra\": 234, \"la\": 456, \"lala\": 678, \"heja\": 123, \"ho\": 4564, \"pa\": 55, \"papa\": 345}",
+      "top_10_words": "{ \"TEONITE\": 500, \"jest\": 444, \"super\": 333, \"tra\": 234, \"la\": 456, \"lala\": 678, \"heja\": 123, \"ho\": 4564, \"pa\": 55, \"papa\": 345}"
+    }
+  }
+]

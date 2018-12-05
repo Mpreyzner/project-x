@@ -1,0 +1,40 @@
+[
+  {
+    "model": "scraper.post",
+    "pk": 1,
+    "fields": {
+      "added": "2018-12-05T20:15:07.923Z",
+      "title": "Ty te\u017c terefere",
+      "author": 1,
+      "content": "Lorem pisum",
+      "language": "pl"
+    }
+  },
+  {
+    "model": "scraper.post",
+    "pk": 2,
+    "fields": {
+      "added": "2018-12-05T20:15:25.473Z",
+      "title": "Ty te\u017c terefere, chyba Ty",
+      "author": 1,
+      "content": "Lorem pisum vol 2",
+      "language": "pl"
+    }
+  },
+  {
+    "model": "scraper.author",
+    "pk": 1,
+    "fields": {
+      "name": "Maria Maria",
+      "tokenized_name": "maria_maria"
+    }
+  },
+  {
+    "model": "scraper.author",
+    "pk": 2,
+    "fields": {
+      "name": "Chuck Norris",
+      "tokenized_name": "chuck_norris"
+    }
+  }
+]
