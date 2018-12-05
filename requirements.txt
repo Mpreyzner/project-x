@@ -1,2 +1,6 @@
+beautifulsoup4==4.6.3
 Django==2.1.4
 djangorestframework==3.9.0
+nltk==3.4
+requests==2.20.1
+urllib3==1.24.1
