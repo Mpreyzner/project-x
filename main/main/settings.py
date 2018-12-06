@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'stats.apps.StatsConfig',
     'scraper.apps.ScraperConfig',
+    'background_task',
 ]
 
 MIDDLEWARE = [
