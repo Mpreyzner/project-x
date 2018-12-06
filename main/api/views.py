@@ -1,4 +1,6 @@
 from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from stats.serializers import AuthorStatsSerializer, TotalStatsSerializer
 from stats.models import AuthorStats, TotalStats
 from scraper.serializers import AuthorSerializer
@@ -10,16 +12,27 @@ class AuthorList(generics.ListAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        queryset.all()
+        authors = {}
+        for author in queryset.all():
+            authors.update({author.tokenized_name: author.name} )
+        # authors = [{author.tokenized_name: author.name} for author in queryset.all()]
+        return Response(authors)
+
 
 # {
 #   "andrzejpiasecki": "Andrzej Piasecki",
 #   "kamilchudy": "Kamil Chudy",
 #   "lukaszpilatowski": "ukasz Piatowski"
 # }
-
-class AuthorStats(generics.ListAPIView):
-    queryset = AuthorStats.objects.all()
-    serializer_class = AuthorStatsSerializer
+@api_view(http_method_names=['GET'])
+def author_stats(request, author):
+    #TODO make this a class
+    author = Author.objects.get(tokenized_name=author)
+    stats = AuthorStats.objects.get(author=author)
+    return Response(stats.top_10_words)
 
 
 # {
@@ -38,6 +51,10 @@ class AuthorStats(generics.ListAPIView):
 class TotalStats(generics.ListAPIView):
     queryset = TotalStats.objects.all()
     serializer_class = TotalStatsSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        return Response(queryset.values_list('top_10_words', flat=True))
     #
     # {
     #     "TEONITE": 2311,
