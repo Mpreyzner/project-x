@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'stats.apps.StatsConfig',
     'scraper.apps.ScraperConfig',
     'background_task',
+    'events',
 ]
 
 MIDDLEWARE = [
