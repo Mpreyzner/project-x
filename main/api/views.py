@@ -1,6 +1,8 @@
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from collections import Counter
+import json
 from stats.serializers import AuthorStatsSerializer, TotalStatsSerializer
 from stats.models import AuthorStats, TotalStats
 from scraper.serializers import AuthorSerializer
@@ -8,16 +10,14 @@ from scraper.models import Author
 
 
 class AuthorList(generics.ListAPIView):
-    # todo adjust formatting
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
-        queryset.all()
         authors = {}
         for author in queryset.all():
-            authors.update({author.tokenized_name: author.name} )
+            authors.update({author.tokenized_name: author.name})
         # authors = [{author.tokenized_name: author.name} for author in queryset.all()]
         return Response(authors)
 
@@ -29,10 +29,11 @@ class AuthorList(generics.ListAPIView):
 # }
 @api_view(http_method_names=['GET'])
 def author_stats(request, author):
-    #TODO make this a class
+    # TODO make this a class
     author = Author.objects.get(tokenized_name=author)
     stats = AuthorStats.objects.get(author=author)
-    return Response(stats.top_10_words)
+    counter = Counter(json.loads(stats.word_counts))
+    return Response(dict(counter.most_common(10)))
 
 
 # {
@@ -54,7 +55,9 @@ class TotalStats(generics.ListAPIView):
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
-        return Response(queryset.values_list('top_10_words', flat=True))
+        stats = queryset.first()
+        counter = Counter(json.loads(stats.word_counts))
+        return Response(dict(counter.most_common(10)))
     #
     # {
     #     "TEONITE": 2311,
