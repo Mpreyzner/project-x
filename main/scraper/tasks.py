@@ -3,8 +3,8 @@ from .post_scraper import PostScraper
 
 
 # python manage.py process_tasks <- add this to docker
-# @background(schedule=15 * 60)
-@background(schedule=1)
+# https://django-background-tasks.readthedocs.io/en/latest/
+@background(schedule=60)
 def scrape_blog():
-    scraper = PostScraper
+    scraper = PostScraper()
     scraper.execute()

@@ -15,8 +15,6 @@ Including another URLconf
 """
 from django.urls import path
 from django.urls import include
-from scraper.tasks import scrape_blog
 urlpatterns = [
     path('', include('api.urls')),
 ]
-scrape_blog(repeat=15, repeat_until=None)
